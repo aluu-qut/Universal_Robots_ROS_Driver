@@ -1,0 +1,101 @@
+[ WARN] [1628661937.643135436]: Shutdown request received.
+[ WARN] [1628661937.644937536]: Reason given for shutdown: [[/robot_state_publisher] Reason: new node registered with same name]
+[ WARN] [1628661937.647415573]: Shutdown request received.
+[ WARN] [1628661937.647451936]: Reason given for shutdown: [[/ur_hardware_interface] Reason: new node registered with same name]
+[ WARN] [1628661937.650562518]: Shutdown request received.
+[ WARN] [1628661937.650624084]: Reason given for shutdown: [[/controller_stopper] Reason: new node registered with same name]
+
+roslaunch ur_robot_driver ur10w_bringup.launch reverse_port:=50009 script_sender_port:=50008 robot_ip:=192.168.3.11 tf_perfix:=urw
+
+error happened when running v
+roslaunch ur_robot_driver ur10_bringup.launch tf_prefix:=urb robot_ip:=192.168.3.21
+
+aluu@aluu-lenovo:~$ rostopic list
+/joint_group_vel_controller/command
+/joint_states
+/pos_joint_traj_controller/command
+/pos_joint_traj_controller/follow_joint_trajectory/cancel
+/pos_joint_traj_controller/follow_joint_trajectory/feedback
+/pos_joint_traj_controller/follow_joint_trajectory/goal
+/pos_joint_traj_controller/follow_joint_trajectory/result
+/pos_joint_traj_controller/follow_joint_trajectory/status
+/pos_joint_traj_controller/state
+/rosout
+/rosout_agg
+/scaled_pos_joint_traj_controller/command
+/scaled_pos_joint_traj_controller/follow_joint_trajectory/cancel
+/scaled_pos_joint_traj_controller/follow_joint_trajectory/feedback
+/scaled_pos_joint_traj_controller/follow_joint_trajectory/goal
+/scaled_pos_joint_traj_controller/follow_joint_trajectory/result
+/scaled_pos_joint_traj_controller/follow_joint_trajectory/status
+/scaled_pos_joint_traj_controller/state
+/speed_scaling_factor
+/tf
+/tf_static
+/ur_hardware_interface/io_states
+/ur_hardware_interface/robot_mode
+/ur_hardware_interface/robot_program_running
+/ur_hardware_interface/safety_mode
+/ur_hardware_interface/script_command
+/ur_hardware_interface/tool_data
+/urw_hardware_interface/robot_mode
+/urw_hardware_interface/robot_program_running
+/urw_hardware_interface/safety_mode
+/wrench
+
+
+
+terminate called after throwing an instance of 'std::system_error'
+  what():  Failed to bind socket for port 50003 to address. Reason: Address already in use: Address already in use
+================================================================================REQUIRED process [white/ur_hardware_interface-2] has died!
+process has died [pid 44671, exit code -6, cmd /home/aluu/catkin_ws/devel/lib/ur_robot_driver/ur_robot_driver_node __name:=ur_hardware_interface __log:=/home/aluu/.ros/log/62bd7134-fa66-11eb-9ad4-31d6e6e46fda/white-ur_hardware_interface-2.log].
+log file: /home/aluu/.ros/log/62bd7134-fa66-11eb-9ad4-31d6e6e46fda/white-ur_hardware_interface-2*.log
+Initiating shutdown!
+================================================================================
+
+
+
+
+
+
+
+doing group name space seems okay
+the rqt_joint_trajectory_controller though then has a fit
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/rqt_joint_trajectory_controller/joint_trajectory_controller.py", line 274, in _on_cm_change
+    self._update_jtc_list()
+  File "/opt/ros/noetic/lib/python3/dist-packages/rqt_joint_trajectory_controller/joint_trajectory_controller.py", line 246, in _update_jtc_list
+    self._robot_joint_limits = get_joint_limits()  # Lazy evaluation
+  File "/opt/ros/noetic/lib/python3/dist-packages/rqt_joint_trajectory_controller/joint_limits_urdf.py", line 21, in get_joint_limits
+    description = rospy.get_param(key)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/client.py", line 467, in get_param
+    return _param_server[param_name] #MasterProxy does all the magic for us
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/msproxy.py", line 123, in __getitem__
+    raise KeyError(key)
+KeyError: 'robot_description'
+PluginHandlerDirect._restore_settings() plugin "rqt_joint_trajectory_controller/JointTrajectoryController#0" raised an exception:
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/qt_gui/plugin_handler_direct.py", line 121, in _restore_settings
+    self._plugin.restore_settings(plugin_settings_plugin, instance_settings_plugin)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rqt_joint_trajectory_controller/joint_trajectory_controller.py", line 215, in restore_settings
+    self._update_jtc_list()
+  File "/opt/ros/noetic/lib/python3/dist-packages/rqt_joint_trajectory_controller/joint_trajectory_controller.py", line 246, in _update_jtc_list
+    self._robot_joint_limits = get_joint_limits()  # Lazy evaluation
+  File "/opt/ros/noetic/lib/python3/dist-packages/rqt_joint_trajectory_controller/joint_limits_urdf.py", line 21, in get_joint_limits
+    description = rospy.get_param(key)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/client.py", line 467, in get_param
+    return _param_server[param_name] #MasterProxy does all the magic for us
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/msproxy.py", line 123, in __getitem__
+    raise KeyError(key)
+KeyError: 'robot_description'
+
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/rqt_joint_trajectory_controller/joint_trajectory_controller.py", line 246, in _update_jtc_list
+    self._robot_joint_limits = get_joint_limits()  # Lazy evaluation
+  File "/opt/ros/noetic/lib/python3/dist-packages/rqt_joint_trajectory_controller/joint_limits_urdf.py", line 21, in get_joint_limits
+    description = rospy.get_param(key)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/client.py", line 467, in get_param
+    return _param_server[param_name] #MasterProxy does all the magic for us
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/msproxy.py", line 123, in __getitem__
+    raise KeyError(key)
+KeyError: 'robot_description'
